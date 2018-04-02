@@ -23,15 +23,17 @@ class ProductDetails extends PureComponent {
   };
 
   render() {
+    console.log(products)
     const { product } = this.props;
     return (
       <div>
         <h1>{product.name}</h1>
-        <p>{`_ ${product.price}`}.00<p>
-        <img {product.image}
+        <p>{`_ ${product.price}`}.00 </p>
+
+        <img> {product.image} </img>
       </div>
     );
   }
 }
 
-export default ProductDetails;
+export default ProductDetails
