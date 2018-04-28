@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import ProductsList from "./components/ProductsList";
-import ProductDetails from "./components/ProductDetails";
+import ProductDetails from "./components/ProductDetails.js";
 
 const products = [
   {
@@ -21,8 +21,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <ProductsList products={products} />
-        <ProductDetails product={products[0]} />
+          <ProductsList />
+          <ProductDetails />
       </div>
     );
   }
