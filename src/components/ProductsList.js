@@ -52,7 +52,7 @@ class ProductsList extends PureComponent {
   };
 
   render() {
-    const { products } = this.props;
+    const { products, currentUser } = this.props;
     return (
       <div style={styles.root}>
         <GridList style={styles.gridList} cols={2.2}>
@@ -83,7 +83,8 @@ class ProductsList extends PureComponent {
 }
 const mapStateToProps = function(state) {
   return {
-    products: state.products
+    products: state.products,
+    currentUser: state.currentUser
   };
 };
 
