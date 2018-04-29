@@ -3,27 +3,21 @@ import logo from "./logo.svg";
 import "./App.css";
 import ProductsList from "./components/ProductsList";
 import ProductDetails from "./components/ProductDetails.js";
-
-const products = [
-  {
-    id: 1,
-    name: "Handbag",
-    price: 1450
-  },
-  {
-    id: 5,
-    name: "Heater",
-    price: 550
-  }
-];
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
 class App extends Component {
   render() {
     return (
-      <div>
-          <ProductsList />
-          <ProductDetails />
-      </div>
+      <Router>
+        <MuiThemeProvider>
+          <div>
+            <Route exact path="/products" component={ProductsList} />
+            <Route exact path="/products/:id" component={ProductDetails} />
+            <Route exact path="/" render={() => <Redirect to="/products" />} />
+          </div>
+        </MuiThemeProvider>
+      </Router>
     );
   }
 }
