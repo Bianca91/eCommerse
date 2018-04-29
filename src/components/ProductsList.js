@@ -4,6 +4,10 @@ import { GridList, GridTile } from "material-ui/GridList";
 import IconButton from "material-ui/IconButton";
 import StarBorder from "material-ui/svg-icons/toggle/star-border";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { fetchAllProducts } from "../actions/fetchProduct";
+import { createProduct, deleteProduct } from "../actions/fetchProduct";
+import ProductForm from "../components/ProductForm";
 
 const styles = {
   root: {
@@ -35,6 +39,18 @@ class ProductsList extends PureComponent {
     ).isRequired
   };
 
+  componentWillMount() {
+    this.props.fetchAllProducts();
+  }
+
+  createProduct = product => {
+    this.props.createProduct(product);
+  };
+
+  deleteProduct = productId => {
+    this.props.deleteProduct(productId);
+  };
+
   render() {
     const { products } = this.props;
     return (
@@ -44,6 +60,7 @@ class ProductsList extends PureComponent {
             <GridTile
               key={product.id}
               title={product.name}
+              subtitle={product.price}
               actionIcon={
                 <IconButton>
                   <StarBorder color="dark grey" />
@@ -52,10 +69,14 @@ class ProductsList extends PureComponent {
               titleStyle={styles.titleStyle}
               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
             >
-              <img style={{heigth: 500, width: 250}}src={product.image} />
+              <img style={{ heigth: 500, width: 250 }} src={product.image} />
+              <Link to={`/products/${product.id}`}>{product.name}</Link>
             </GridTile>
           ))}
         </GridList>
+        <h1>Create a new product</h1>
+
+        <ProductForm onSubmit={this.createProduct} />
       </div>
     );
   }
@@ -66,4 +87,8 @@ const mapStateToProps = function(state) {
   };
 };
 
-export default connect(mapStateToProps)(ProductsList);
+export default connect(mapStateToProps, {
+  fetchAllProducts,
+  createProduct,
+  deleteProduct
+})(ProductsList);

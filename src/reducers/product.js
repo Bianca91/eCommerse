@@ -1,24 +1,17 @@
-const product = [
-  {
-    id: 5,
-    name: 'Fork',
-    price: 550,
-    description: "Pure silver. One of its kind. Must buy.",
-    image: 'http://country929.com/files/2015/04/fork.jpg'
-  },
-  {
-    id: 7,
-    name: 'Spoon',
-    price: 10,
-    description: "One of its kind. Ideal for entertaining guests.",
-    image: 'http://i.huffpost.com/gen/1302381/images/o-SPOON-facebook.jpg'
-  }
-]
+import { FETCHED_DETAILED_PRODUCT, ADD_PRODUCT, UPDATE_PRODUCT } from "../actions/fetchProduct";
 
-
-export default function (state = product, action) {
+export default function(state = [], action) {
   switch (action.type) {
+    case FETCHED_DETAILED_PRODUCT:
+      return action.payload;
+    case ADD_PRODUCT:
+      return [...state, action.payload];
+    case UPDATE_PRODUCT:
+      if (action.payload.id === state.id) {
+        return action.payload;
+      } else return state;
+
     default:
-      return state
+      return state;
   }
 }

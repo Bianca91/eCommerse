@@ -1,20 +1,10 @@
-const products = [
-  {
-    id: 5,
-    name: 'Fork',
-    price: 550,
-    image: 'http://country929.com/files/2015/04/fork.jpg'
-  },
-  {
-    id: 7,
-    name: 'Spoon',
-    price: 10,
-    image: 'http://i.huffpost.com/gen/1302381/images/o-SPOON-facebook.jpg'
-  }
-]
+import {FETCHED_ALL_PRODUCTS} from '../actions/fetchProduct'
 
-export default function (state = products, action) {
+export default function (state = [], action) {
   switch (action.type) {
+    case FETCHED_ALL_PRODUCTS:
+      return action.payload
+
     default:
       return state
   }
