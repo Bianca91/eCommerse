@@ -1,6 +1,6 @@
 import * as request from "superagent";
 
-const baseUrl = "http://localhost:4001";
+const baseUrl = "http://localhost:4000";
 
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
 export const USER_LOGIN_FAILED = "USER_LOGIN_FAILED";

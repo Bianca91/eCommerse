@@ -6,7 +6,8 @@ import ProductDetails from "./components/ProductDetails.js";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import LoginPage from "./containers/LoginPage";
-import SignupPage from './containers/SignupPage'
+import SignupPage from "./containers/SignupPage";
+import ProductCreator from "./containers/ProductCreator";
 
 class App extends Component {
   render() {
@@ -15,9 +16,11 @@ class App extends Component {
         <MuiThemeProvider>
           <div className="App">
             <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/signup" component={SignupPage} />
             <Route exact path="/products" component={ProductsList} />
             <Route exact path="/products/:id" component={ProductDetails} />
-            <Route exact path="/" render={() => <Redirect to="/login" />} />
+            <Route exact path="/create" component={ProductCreator} />
+            <Route exact path="/" render={() => <Redirect to="/products" />} />
           </div>
         </MuiThemeProvider>
       </Router>

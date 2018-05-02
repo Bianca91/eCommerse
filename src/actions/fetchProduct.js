@@ -1,6 +1,6 @@
 import * as request from "superagent";
 
-const baseUrl = "http://localhost:4001";
+const baseUrl = "http://localhost:4000";
 
 export const FETCHED_DETAILED_PRODUCT = "FETCHED_DETAILED_PRODUCT";
 export const FETCHED_ALL_PRODUCTS = "FETCHED_ALL_PRODUCTS";
@@ -9,11 +9,8 @@ export const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 
 export const fetchProduct = productId => (dispatch, getState) => {
-  const state = getState();
-  const jwt = state.currentUser.jwt;
   request
     .get(`${baseUrl}/products/${productId}`)
-    .set("Authorization", `Bearer ${jwt}`)
     .then(response =>
       dispatch({
         type: FETCHED_DETAILED_PRODUCT,
@@ -24,11 +21,8 @@ export const fetchProduct = productId => (dispatch, getState) => {
 };
 
 export const fetchAllProducts = () => (dispatch, getState) => {
-  const state = getState();
-  const jwt = state.currentUser.jwt;
   request
     .get(`${baseUrl}/products`)
-    .set("Authorization", `Bearer ${jwt}`)
     .then(response =>
       dispatch({
         type: FETCHED_ALL_PRODUCTS,
@@ -39,12 +33,9 @@ export const fetchAllProducts = () => (dispatch, getState) => {
 };
 
 export const createProduct = product => (dispatch, getState) => {
-  const state = getState();
-  const jwt = state.currentUser.jwt;
 
   request
     .post(`${baseUrl}/products`)
-    .set("Authorization", `Bearer ${jwt}`)
     .send(product)
     .then(response =>
       dispatch({

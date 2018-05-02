@@ -65,7 +65,7 @@ class ProductDetails extends PureComponent {
         <Paper style={style} zDepth={1}>
           <Card style={{ display: "inline-block", margin: 5 }}>
             {this.state.edit && (
-              <ProductForm initialValues={product} onSubmit={null} />
+              <ProductForm initialValues={product} onSubmit={updateProduct} />
             )}
             {!this.state.edit && (
               <div>
@@ -97,10 +97,7 @@ class ProductDetails extends PureComponent {
                 <Divider />
               </div>
             )}
-            <ProductForm
-              initialValues={product}
-              onSubmit={this.updateProduct}
-            />
+
           </Card>
         </Paper>
       </div>
